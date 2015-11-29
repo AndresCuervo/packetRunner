@@ -31,20 +31,11 @@ function animateAll(element, index, array) {
     element.animate();
 }
 
-var grayBox = new grayBox();
 var timer = 0;
 
 function draw() {
     if (playing) {
         background(bg);
-        // rect(width/2, height/2, 200, 200, 100, cornerRadius, 100, cornerRadius);
-        // if (cornerRadius != 20) {
-        //     cornerRadius -= 1;
-        // } else {
-        //     cornerRadius = 100;
-        // }
-        // grayBox.animate("leftRightExpand");
-        // grayBox.leftRightExpand();
         timer += 1;
         var playerY = window.innerHeight - 60;
         var playerX = window.innerWidth/2;
