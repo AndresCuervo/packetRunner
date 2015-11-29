@@ -1,5 +1,5 @@
 var bg = 250;
-var playing = true;
+var playing = false;
 var playPause;
 
 var boxes = [];
@@ -14,7 +14,7 @@ function setup() {
     fill(fillColor);
     // stroke(128);
     button = createButton('Play/Pause');
-    button.position(width - 100, 20);
+    button.position(200, 200);
     button.mousePressed(function () {playing = !playing;});
 
 
