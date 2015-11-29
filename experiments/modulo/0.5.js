@@ -57,7 +57,7 @@ function Box(index) {
 
     this.animate = function () {
         this.color = boxes[Math.floor( this.index ) % boxes.length].color;
-        this.index += 0.005;
+        this.index += 0.5;
         // fill(color('#2EAFAC'));
         fill(this.color);
         // print(color);
