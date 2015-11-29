@@ -14,7 +14,6 @@ function setup() {
     fill(fillColor);
     // stroke(128);
     button = createButton('Play/Pause');
-    button.position(width - 100, 20);
     button.mousePressed(function () {playing = !playing;});
 
 
@@ -42,8 +41,7 @@ function draw() {
         boxes.forEach(animateAll);
         ellipse(playerX, playerY, 20, 20);
         fill(255);
-        textSize(40);
-        text("Frame " + timer, window.innerWidth / 2 - 100, window.innerHeight / 2);
+        text("Frame " + timer, 10, 10);
     }
 }
 
