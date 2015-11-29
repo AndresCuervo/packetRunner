@@ -1,11 +1,12 @@
 var bg = 250;
-var playing = true;
-var playPause;
+var paused = true;
+var debugging = true;
+var pauseBegan = false;
 
 var boxes = [];
 var boxCount = 100;
 
-
+var menuCircle;
 function setup() {
     createCanvas(window.screen.width, window.screen.height);
     background(bg);
@@ -15,17 +16,33 @@ function setup() {
     // stroke(128);
     button = createButton('Play/Pause');
     button.position(width - 100, 20);
-    button.mousePressed(function () {playing = !playing;});
+    button.mousePressed(togglePause);
 
 
     for (i = 0; i <= boxCount; i++) {
         boxes.push(new Box(i));
     }
+    menuCircle = new menuCircle();
 }
 
-function playPauseFunction() {
-    playing = !playing
+function togglePause() {
+    paused = !paused;
+    pauseBegan = false;
+    print("Paused! paused has been set to: " + paused + " and pauseBegan has been set to: " + pauseBegan);
 }
+
+function pauseOn() {
+    paused = true;
+    pauseBegan = false;
+    print("Paused! paused has been set to: " + paused + " and pauseBegan has been set to: " + pauseBegan);
+}
+
+function pauseOff() {
+    paused = false;
+    pauseBegan = false;
+    print("Paused! paused has been set to: " + paused + " and pauseBegan has been set to: " + pauseBegan);
+}
+
 
 function animateAll(element, index, array) {
     element.animate();
@@ -34,17 +51,18 @@ function animateAll(element, index, array) {
 var timer = 0;
 
 function draw() {
-    if (playing) {
+    if (paused) {
+        pause();
+    } else {
         background(bg);
         timer += 1;
         var playerY = window.innerHeight - 60;
         var playerX = window.innerWidth/2;
         boxes.forEach(animateAll);
         ellipse(playerX, playerY, 20, 20);
-        fill(255);
-        textSize(40);
-        text("Frame " + timer, window.innerWidth / 2 - 100, window.innerHeight / 2);
+        whiteText("Frame " + timer, window.innerWidth / 2 - 100, window.innerHeight / 2);
     }
+    menuCircle.animate();
 }
 
 
@@ -67,4 +85,58 @@ function Box(index) {
         rect(topLeftX, 400, width, window.screen.height);
         // print("what the: " + topLeftX + ", 0, " + width + ", " + window.screen.height);
     };
+}
+
+// Make a new function that creates a circle (and has a color if debugging)
+// whose center is at the bottom right corner and shows the pasue menu if it's
+// outside that circle!
+
+function menuCircle() {
+    this.radius = 200;
+
+    this.animate = function () {
+        if (debugging) {
+            fill(color('#2EAFAC'));
+            rect(window.innerWidth, window.innerHeight, 50, 50);
+        }
+        // Detect whether mouse is in this.radius and play o.w. pause lol
+        if (pwinMouseX >  window.innerWidth -  50 && pwinMouseY > window.innerHeight - 50) {
+            pauseOff();
+        } else {
+            pause();
+            print("mouse less than those things lol");
+            print("mouse at x: " + pwinMouseX + "y: " + pwinMouseY);
+        }
+        // var mouseCircle = {radius: 20, x: pwinMouseX, y: pwinMouseY};
+        // var menuCircle = {radius: this.radius, x: 10, y: 5};
+        //
+        // var dx = mouseCircle.x - menuCircle.x;
+        // var dy = mouseCircle.y - menuCircle.y;
+        // var distance = Math.sqrt(dx * dx + dy * dy);
+        //
+        // if (distance < mouseCircle.radius + menuCircle.radius) {
+        //     // togglePause;
+        //     pause();
+        //     print("mouse at x: " + pwinMouseX + "y: " + pwinMouseY);
+        // } else {
+        //     print("mouse at x: " + pwinMouseX + "y: " + pwinMouseY);
+        //     print("I'm not touching youuuu");
+        // }
+    }
+}
+
+function pause() {
+    paused = true;
+    if (pauseBegan) {
+    } else {
+        pauseBegan = !pauseBegan;
+        background(0, 0, 0, 70);
+        whiteText("PAUSED", width/2, height/2);
+    }
+}
+
+function whiteText(string, x, y) {
+    fill(255);
+    textSize(40);
+    text(string, x, y)
 }
