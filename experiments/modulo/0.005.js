@@ -1,5 +1,5 @@
 var bg = 250;
-var playing = true;
+var playing = false;
 var playPause;
 
 var boxes = [];
