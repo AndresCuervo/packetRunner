@@ -1,5 +1,5 @@
-# Packet Runner
+# Packet Runner Experiments (gh-pages branch)
 
-This is a little game I'm working on, and I'll add more notes here as it gets
-better with time, but for now here are some experiments I'm working on for it
-that I've found interesting!
+These are some experiments I've made to help me figure out, but also document
+and understand various things about a little game I'm making. The game itself
+is on the `master` branch.
