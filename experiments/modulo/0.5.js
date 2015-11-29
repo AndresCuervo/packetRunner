@@ -42,6 +42,8 @@ function draw() {
         ellipse(playerX, playerY, 20, 20);
         fill(255);
         text("Frame " + timer, 10, 10);
+    } else {
+        background(color(100, 100, 100, 3));
     }
 }
 
