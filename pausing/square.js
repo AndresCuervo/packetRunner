@@ -14,7 +14,7 @@ function setup() {
     var fillColor = color('#4F4F4F');
     fill(fillColor);
     // stroke(128);
-    button = createButton('Play/Pause');
+    button = createButton('Next');
     button.position(width - 100, 20);
     button.mousePressed(togglePause);
 
@@ -97,10 +97,10 @@ function menuCircle() {
     this.animate = function () {
         if (debugging) {
             fill(color('#2EAFAC'));
-            rect(width, height, this.radius * 2, this.radius * 2);
+            rect(window.innerWidth, window.innerHeight, 50, 50);
         }
         // Detect whether mouse is in this.radius and play o.w. pause lol
-        if (pwinMouseX >  window.innerWidth - 200 && pwinMouseY > window.innerHeight - 50) {
+        if (pwinMouseX >  window.innerWidth -  50 && pwinMouseY > window.innerHeight - 50) {
             pauseOff();
         } else {
             pause();
